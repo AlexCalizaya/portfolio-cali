@@ -1,0 +1,140 @@
+---
+import ProjectItem from '../components/ExperienceItem.astro';
+import React from "./Icons/React.astro"
+import Tailwind from "./Icons/Tailwind.astro"
+import HTML from "./Icons/HTML.astro"
+import ReactNative from "./Icons/React.astro"
+import Javascript from "./Icons/Javascript.astro"
+import MongoDB from "./Icons/MongoDB.astro"
+import Express from "./Icons/Express.astro"
+
+const TAGS = {
+  REACT: {
+    name: "React",
+    class: "bg-black text-white",
+    icon: React,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+  HTML: {
+    name: "HTML",
+    class: "bg-black text-white",
+    icon: HTML,
+  },
+  REACTNATIVE: {
+    name: "React Native",
+    class: "bg-black text-white",
+    icon: ReactNative,
+  },
+  JAVASCRIPT: {
+    name: "Javascript",
+    class: "bg-black text-white",
+    icon: Javascript,
+  },
+  MONGODB: {
+    name: "MongoDB",
+    class: "bg-black text-white",
+    icon: MongoDB,
+  },
+  EXPRESSJS: {
+    name: "Express.JS",
+    class: "bg-black text-white",
+    icon: Express,
+  },
+}
+
+const ProjectsList = [
+    {
+        title: 'Página web - HarkAI',
+        description: 'Página web para la visualización de incidentes ante la falta de EPPs en planta. Se observan cartillas las cuales registran imágenes con posibles incidentes. El usuario Supervisor es capaza de realizar un reporte del incidente. Asimismo, muestra una página de estadísticas en la que se visualiza la cantidad de incidentes reportados en el mes mediante gráficas.',
+        link: '#',
+        github: '#',
+        images: [
+            'https://ibb.co/vBmvQH5',
+            'https://ibb.co/R0xfvht',
+            'https://ibb.co/JFLs42F',
+            'https://ibb.co/8xWqRSw'
+        ],
+        tags: [TAGS.EXPRESSJS, TAGS.HTML, TAGS.JAVASCRIPT, TAGS.MONGODB, TAGS.REACT, TAGS.REACTNATIVE, TAGS.TAILWIND],
+    }
+
+]
+
+const tagsHarkAI = ["Javascript", "React", "Tailwind CSS", "Express.JS", "HTML"]; // Lista de palabras permitidas
+
+---
+
+{
+    ProjectsList.map(({ images, title, description, tags }) => (
+        <article>
+            <h3 class="text-2xl font-bold text-yellow-300 pb-5">{title}</h3>
+            <p class="text-lg mb-4 text-pretty">{description}</p>
+            <ul class="flex gap-x-2 flex-row pb-5">
+                {tags
+                    .filter(tag => tagsHarkAI.includes(tag.name))
+                    .map((tag) => (
+                        <li>
+                            <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                                <tag.icon class="size-4"></tag.icon>{tag.name}
+                            </span>
+                        </li>
+                    ))}
+            </ul>
+            <div class="image-carousel relative">
+                <img id="current-image" class="rounded shadow-2xl shadow-white/10" src={images[0]} alt={`Fotos proyecto`} />
+                <button id="prev-button" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1">←</button>
+                <button id="next-button" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1">→</button>
+            </div>
+        </article>
+    ))
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentIndex: number = 0;
+
+        const images: string[] = [
+            '/projects/HarkAI-1.webp',
+            '/projects/HarkAI-2.webp',
+            '/projects/HarkAI-3.webp'
+        ];
+
+        const imageElement = document.getElementById('current-image') as HTMLImageElement | null;
+        const prevButton = document.getElementById('prev-button') as HTMLButtonElement | null;
+        const nextButton = document.getElementById('next-button') as HTMLButtonElement | null;
+
+        if (!imageElement || !prevButton || !nextButton) {
+            console.error('Failed to initialize image carousel');
+            return;
+        }
+
+        function showImage(index: number) {
+            imageElement!.src = images[index];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showImage(currentIndex);
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        }
+
+        prevButton.addEventListener('click', prevImage);
+        nextButton.addEventListener('click', nextImage);
+
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.key === 'ArrowLeft') {
+                prevImage();
+            } else if (event.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+    });
+</script>
+

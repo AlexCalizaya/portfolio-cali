@@ -1,0 +1,23 @@
+---
+import ExperienceItem from '../components/ExperienceItem.astro';
+
+const ExperienceList = [
+    {
+        date: 'Agosto 2023 - Julio 2024',
+        title: 'Practicante Pre Profesional de Proyectos - Consultoría Carranza E.I.R.L. ',
+        description: ' Participé en el desarrollo de una app web mediante HTML, CSS y Javascript usando el framework front-end React (frontend). Participé en el desarrollo de un servidor REST-API para su interconexión con el app web diseñado usando el framework Express (backend). Utilicé e implementé tecnologías de Industria 4.0 IoT utilizando el protocolo MQTT para la comunicación de sistemas industriales.',
+    }
+
+]
+---
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-2">
+    {
+        ExperienceList.map(experience => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...experience} />
+
+            </li>
+        ))
+    }
+</ol>
+

@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Badge from '../components/Badge.astro';
+import SocialPill from '../components/SocialPill.astro';
+import LinkedIn from '../components/Icons/LinkedIn.astro';
+import GitHub from '../components/Icons/GitHub.astro';
+import Mail from '../components/Icons/Mail.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import Suitcase from '../components/Icons/Suitcase.astro';
+import Code from '../components/Icons/Code.astro';
+import Projects from '../components/Projects.astro';
+---
+
+<Layout title="Portfolio de Alex Calizaya - Programador Jr" description="Contrata a Alex Calizaya para realizar proyectos de desarrollo software, análisis de datos e IA/ML">
+	<main class="px-5">
+		<SectionContainer class="py-44 pb-32">
+			<img class="rounded-full w-12 h-12 mb-4" src="https://w7.pngwing.com/pngs/535/328/png-transparent-cartoon-lion-head.png" alt="cali photo" />
+			<h1 class="text-white text-2xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-2 pb-5">Hola, soy<span class="text-blue-400">Alex Calizaya</span><div class="flex justify-center items-center">
+					<Badge>En busca de chamba</Badge>
+				</div>
+			</h1>
+			<h2 class="text-base md:text-xl text-wrap max-w-[700px]">
+				<span class="text-yellow-300 opacity-80">Desarrollador web y programador Jr.</span>
+				<span class="text-gray-200"> Egresado de Ingeniería Mecatrónica en</span>
+				<span class="text-blue-500 opacity-80 inline-flex">
+					Pontificia Universidad Católica de Perú 
+					<img src="https://scontent.flim38-1.fna.fbcdn.net/v/t39.30808-6/220961507_10159215284491310_3062319909914403409_n.png?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VHlj88sGyYQQ7kNvgGBiGTs&_nc_ht=scontent.flim38-1.fna&oh=00_AYBArLaV7vjIlthen_Pac8SlQOPgQpp_UtjyBjC9TK34Jg&oe=66C2A26B" class="size-8 ml-2" />
+				</span>
+			</h2>
+			
+			<nav class="flex gap-6 mt-4 flex-wrap">
+				<SocialPill href="https://www.linkedin.com/in/alexcalizaya/">
+					<LinkedIn class="size-4 lg:size-6" />
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://github.com/AlexCalizaya">
+					<GitHub class="size-4 lg:size-6" />
+					GitHub
+				</SocialPill>
+				<SocialPill href="mailto:franciscocalizaya181@gmail.com">
+					<Mail class="size-4 lg:size-6" />
+					franciscocalizaya181@gmail.com
+				</SocialPill>
+			</nav>
+		</SectionContainer>
+		<SectionContainer id="experiencia">
+			<h2 class="text-2xl font-semibold mb-5 flex gap-x-3 items-center">
+				<Suitcase class="size-7"></Suitcase>
+				Experiencia Laboral
+			</h2>
+			<Experience />
+		</SectionContainer>
+		<SectionContainer id="proyectos">
+			<h2 class="text-2xl font-semibold mb-5 flex gap-x-3 items-center">
+				<Code class="size-7"></Code>
+				Proyectos
+			</h2>
+			<Projects />
+
+			<article>
+				<h3 class="text-2xl font-bold text-yellow-300 pt-20">REST-API - HarkAI</h3>
+				<p class="text-lg mb-4 text-pretty">Desarrollé una REST API la cuál se conectó a MongoDB y Cloudinary para recibir solicitudes para la subida de imágenes en Cloudinary y su guardado en MongoDB. Esta API se conecta al aplicativo web diseñado para la supervisión de incidentes ante la falta de equipso de protección personal.</p>
+				<img src="https://nordicapis.com/wp-content/uploads/Building-a-RESTful-API-Using-Node.JS-and-MongoDB.png"/>
+				<ul class="flex gap-x-2 flex-row pb-5">
+					
+				</ul>
+				
+			</article>
+
+			<article>
+				<h3 class="text-2xl font-bold text-yellow-300 pt-20">App galería imágenes - Cloudinary</h3>
+				<p class="text-lg mb-4 text-pretty">Desarrollé una app móvil para la subida de imágenes a la nube. Esta ofrecía el botón de subida y visualización de imágenes.</p>
+				<a href="https://github.com/AlexCalizaya/App-Cali.git">Link del repositorio</a>
+				<ul class="flex gap-x-2 flex-row pb-5">
+		
+				</ul>
+				
+			</article>
+		</SectionContainer>
+	</main>
+</Layout>
+
