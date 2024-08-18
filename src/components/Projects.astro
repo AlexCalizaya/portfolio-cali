@@ -7,6 +7,9 @@ import ReactNative from "./Icons/React.astro"
 import Javascript from "./Icons/Javascript.astro"
 import MongoDB from "./Icons/MongoDB.astro"
 import Express from "./Icons/Express.astro"
+import GitHub from "./Icons/GitHub.astro"
+import Link from "./Icons/Link.astro"
+import LinkButton from "./LinkButton.astro"
 
 const TAGS = {
   REACT: {
@@ -47,94 +50,81 @@ const TAGS = {
 }
 
 const ProjectsList = [
-    {
-        title: 'Página web - HarkAI',
-        description: 'Página web para la visualización de incidentes ante la falta de EPPs en planta. Se observan cartillas las cuales registran imágenes con posibles incidentes. El usuario Supervisor es capaza de realizar un reporte del incidente. Asimismo, muestra una página de estadísticas en la que se visualiza la cantidad de incidentes reportados en el mes mediante gráficas.',
-        link: '#',
-        github: '#',
-        images: [
-            'https://ibb.co/vBmvQH5',
-            'https://ibb.co/R0xfvht',
-            'https://ibb.co/JFLs42F',
-            'https://ibb.co/8xWqRSw'
-        ],
-        tags: [TAGS.EXPRESSJS, TAGS.HTML, TAGS.JAVASCRIPT, TAGS.MONGODB, TAGS.REACT, TAGS.REACTNATIVE, TAGS.TAILWIND],
-    }
-
+  {
+    title: "Plataforma web de gestión de incidentes - HarkAI",
+    description:
+      "Aplicativo web diseñado para la start up HarkTech para la gestión de incidentes detectados por Inteligencia Artificial. Los incidentes son visualizados en la página y reportados según criterio del usuario Supervisor. Asimismo, se cuenta con una página de Estadísticas y Resumenes para la gestión de reportes generados hasta la fecha.",
+    link: "https://harkai-interfaz.vercel.app/",
+    image: "https://i.ibb.co/rtMfcmP/HarkAI-1.webp",
+    tags: [TAGS.REACT, TAGS.EXPRESSJS, TAGS.TAILWIND],
+  },
+  {
+    title: "RestAPI para la subida de imágenes con Cloudinary y MongoDB",
+    description:
+      "Desarrollé una RESTAPI para el almacenamiento de imágenes en Cloudinary en cifrado base64 y la posterior subida de información en MongoDB.",
+    github: "https://github.com/AlexCalizaya/REST-API-Cali.git",
+    image: "https://nordicapis.com/wp-content/uploads/Building-a-RESTful-API-Using-Node.JS-and-MongoDB.png",
+    tags: [TAGS.JAVASCRIPT, TAGS.EXPRESSJS, TAGS.MONGODB],
+  },
+  {
+    title: "Aplicativo Galería de imágenes con Cloudinary",
+    description:
+      "Desarrollé una RESTAPI para el almacenamiento de imágenes en Cloudinary en cifrado base64 y la posterior subida de información en MongoDB.",
+    github: "https://github.com/AlexCalizaya/App-Cali.git",
+    image: "https://i.ytimg.com/vi/Z5UUFFhU-YQ/maxresdefault.jpg",
+    tags: [TAGS.JAVASCRIPT, TAGS.REACTNATIVE, TAGS.EXPRESSJS],
+  },
 ]
-
-const tagsHarkAI = ["Javascript", "React", "Tailwind CSS", "Express.JS", "HTML"]; // Lista de palabras permitidas
 
 ---
 
-{
-    ProjectsList.map(({ images, title, description, tags }) => (
-        <article>
-            <h3 class="text-2xl font-bold text-yellow-300 pb-5">{title}</h3>
-            <p class="text-lg mb-4 text-pretty">{description}</p>
-            <ul class="flex gap-x-2 flex-row pb-5">
-                {tags
-                    .filter(tag => tagsHarkAI.includes(tag.name))
-                    .map((tag) => (
-                        <li>
-                            <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
-                                <tag.icon class="size-4"></tag.icon>{tag.name}
-                            </span>
-                        </li>
-                    ))}
-            </ul>
-            <div class="image-carousel relative">
-                <img id="current-image" class="rounded shadow-2xl shadow-white/10" src={images[0]} alt={`Fotos proyecto`} />
-                <button id="prev-button" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1">←</button>
-                <button id="next-button" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1">→</button>
-            </div>
-        </article>
-    ))
-}
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let currentIndex: number = 0;
-
-        const images: string[] = [
-            '/projects/HarkAI-1.webp',
-            '/projects/HarkAI-2.webp',
-            '/projects/HarkAI-3.webp'
-        ];
-
-        const imageElement = document.getElementById('current-image') as HTMLImageElement | null;
-        const prevButton = document.getElementById('prev-button') as HTMLButtonElement | null;
-        const nextButton = document.getElementById('next-button') as HTMLButtonElement | null;
-
-        if (!imageElement || !prevButton || !nextButton) {
-            console.error('Failed to initialize image carousel');
-            return;
-        }
-
-        function showImage(index: number) {
-            imageElement!.src = images[index];
-        }
-
-        function prevImage() {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            showImage(currentIndex);
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            showImage(currentIndex);
-        }
-
-        prevButton.addEventListener('click', prevImage);
-        nextButton.addEventListener('click', nextImage);
-
-        document.addEventListener('keydown', (event: KeyboardEvent) => {
-            if (event.key === 'ArrowLeft') {
-                prevImage();
-            } else if (event.key === 'ArrowRight') {
-                nextImage();
-            }
-        });
-    });
-</script>
-
+<div class="flex flex-col gap-y-16">
+    {
+      ProjectsList.map(({ image, title, description, tags, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+    <div class="w-full md:w-1/2">
+      <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+        <img alt="Imagen del proyecto HarkAI" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      </div>
+    </div>
+  
+    <div class="w-full md:w-1/2 md:max-w-lg">
+      <h3 class="text-2xl font-bold text-yellow-300">
+        {title}
+      </h3>
+      <div class="flex flex-wrap mt-2">
+        <ul class="flex flex-row mb-2 gap-x-2">
+            {tags.map((tag) => (
+              <li>
+                <span
+                  class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                >
+                  <tag.icon class="size-4" />
+                  {tag.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+  
+        <div class="mt-2 text-gray-300 text-sm">{description}</div>
+        <footer class="flex items-end justify-start mt-4 gap-x-4">
+            {github && (
+              <LinkButton href={github}>
+                <GitHub class="size-6" />
+                Code
+                
+              </LinkButton>
+            )}
+            {link && (
+              <LinkButton href={link}>
+                <Link class="size-4" />
+                Preview
+              </LinkButton>
+            )}
+          </footer>
+      </div>
+    </div>
+  </article>
+      ))
+    }
+  </div>
